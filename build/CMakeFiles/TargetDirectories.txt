@@ -1,0 +1,3 @@
+/media/kristoft/E1/Dev/utilities/sandbox/build/CMakeFiles/rebuild_cache.dir
+/media/kristoft/E1/Dev/utilities/sandbox/build/CMakeFiles/dspc++.dir
+/media/kristoft/E1/Dev/utilities/sandbox/build/CMakeFiles/edit_cache.dir
