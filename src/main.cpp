@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 class Data{
 	public:
@@ -16,24 +17,29 @@ class Data{
 
 		void readTxt(std::string fName)
 		{
-			std::string data = "";
+			std::string temp = "";
 			std::ifstream file;
 			file.open(fName);
-			while(getline(file,data,'\n'))
+			while(getline(file,temp,'\n'))
 			{
 				dataRow++;
-				std::cout << data <<std::endl;
 			}		
 			std::cout << "Datarow is:" << dataRow << std::endl;
 			file.close();
 			file.open(fName);
+			unsigned int funcData[dataRow][dataCol];
 			for(int row = 0; row < dataRow; row++)
 			{
-				for(int col = 0, col < dataCol; col++)
+				for(int col = 0; col < dataCol; col++)
 				{
-					getline(file,)
+					getline(file,temp,',');
+					std::istringstream reader(temp);
+					uint32_t val = 0;
+					reader >> funcData[row][col];
+					std::cout << funcData[row][col] << std::endl;
 				}
 			}
+			data = funcData;
 		}
 	private:
 };
