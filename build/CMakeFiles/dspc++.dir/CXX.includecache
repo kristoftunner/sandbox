@@ -6,11 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/media/kristoft/E1/Dev/utilities/sandbox/src/main.cpp
+/home/tunnerk/sandbox/sandbox/src/vectorized.cpp
 iostream
 -
 fstream
 -
 sstream
+-
+vector
 -
 

@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/dspc++.dir/src/main.cpp.o"
-  "dspc++.pdb"
+  "CMakeFiles/dspc++.dir/src/vectorized.cpp.o"
   "dspc++"
+  "dspc++.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

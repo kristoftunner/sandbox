@@ -1,4 +1,4 @@
-# Install script for directory: /media/kristoft/E1/Dev/utilities/sandbox
+# Install script for directory: /home/tunnerk/sandbox/sandbox
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/media/kristoft/E1/Dev/utilities/sandbox/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/tunnerk/sandbox/sandbox/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

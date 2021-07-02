@@ -1,1 +1,1 @@
-/usr/bin/c++  -Wall -Wextra   CMakeFiles/dspc++.dir/src/main.cpp.o  -o dspc++ 
+/usr/bin/c++  -Wall -Wextra   CMakeFiles/dspc++.dir/src/vectorized.cpp.o  -o dspc++ 
