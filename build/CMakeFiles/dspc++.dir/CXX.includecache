@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/tunnerk/sandbox/sandbox/src/vectorized.cpp
+/media/kristoft/E1/Dev/utilities/sandbox/src/vectorized.cpp
 iostream
 -
 fstream
@@ -14,5 +14,7 @@ fstream
 sstream
 -
 vector
+-
+string
 -
 

@@ -2,14 +2,22 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <string>
 
 #define CHANNELS 3 
 #define DEAFULT_NR_ROWS 1024
+#define LOG(x) std::cout << x << std::endl;
 
 struct chData
 {
-    unsigned ch0,ch1,ch2;
+    unsigned int ch0,ch1,ch2;
 };
+
+std::ostream& operator<<(std::ostream& stream, const chData& data)
+{
+    stream << data.ch0 << "," << data.ch1 << "," << data.ch2 << std::endl;
+    return stream;
+}
 
 class DataBuffer
 {
@@ -43,20 +51,28 @@ void DataBuffer::ReadData(std::string fName)
     std::ifstream file;
     file.open(fName);
     struct chData val = {0,0,0};
-    unsigned int i = 0;
-    while(getline(file,temp,','))
+    int i = 0;
+    std::vector<string>* p = NULL;
+    while(getline(file,temp,'\n'))
     {
+        //getline(file,temp,',');
+
         std::istringstream reader(temp);
-        reader >> val;
-        if((i%3 == 0) & (i !=0 ))
+        std::cout << "i is:"  << std::endl;
+        LOG(temp);
+        int tmp = i%3;
+        if(i%3 == 0)
+            reader >> val.ch0;
+        else if(i%3 == 1)
+            reader >> val.ch1;
+        else if(i%3 == 2)
         {
+            reader >>val.ch2;
             data.push_back(val);
-            std::cout << "data pushed" << std::endl;
+            LOG("Data is pushed");
         }
         i++;
     }
-           //data.push_back(val);
-
 }
 
 int main()
@@ -64,10 +80,11 @@ int main()
     std::string dataFile = "../sample";
     DataBuffer buff(dataFile);
     buff.ReadData(dataFile);
-    struct chData data = {0,1,2};
-    std::cout << data[0] << std::endl;
-    //for(int i = 0; i < buff.data.size(); i++)
-    //    std::cout << buff.data[i].ch0 << std::endl;
     
-    
+    for(int i = 0;  i < buff.data.size(); i++)
+    {
+        std::cout << buff.data[i] << std::endl;
+    }
+    //for(chData d : buff.data)
+     //   std::cout << d << std::endl;
 }
