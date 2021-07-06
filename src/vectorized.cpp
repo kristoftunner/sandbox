@@ -19,72 +19,48 @@ std::ostream& operator<<(std::ostream& stream, const chData& data)
     return stream;
 }
 
-class DataBuffer
+class dataBuffer
 {
     public:
         unsigned int rows = 0;
         unsigned int cols = 3;
         std::vector<chData> data;
         
-        DataBuffer(std::string fName);
-        void ReadData(std::string fName);
+        dataBuffer(std::string fName);
+        void readData(std::string fName);
 };
 
-DataBuffer::DataBuffer(std::string fName)
+dataBuffer::dataBuffer(std::string fName)
 {
-    std::string temp = "";
-    std::ifstream file;
-    file.open(fName);
-
-    while(getline(file,temp,'\n'))
-    {
-        rows++;
-    }
-    std::cout << "There is " << rows << " number of data" << std::endl;
-    file.close();
-    cols = 3;
+    std::ifstream input(fName, std::ios::binary);
+    input.seekg(0,input.end);
+    int length = input.tellg();
+    input.seekg(0,input.beg);
+    rows = length/(4*cols);
+    std::cout << "There is " << rows << " rows of data" << std::endl;
+    input.close();   
 }
 
-void DataBuffer::ReadData(std::string fName)
+void dataBuffer::readData(std::string fName)
 {
-    std::string temp = "";
-    std::ifstream file;
-    file.open(fName);
-    struct chData val = {0,0,0};
-    int i = 0;
-    std::vector<string>* p = NULL;
-    while(getline(file,temp,'\n'))
+    std::ifstream input( fName, std::ios::binary );
+    input.seekg(0, input.end);
+    int length = input.tellg();
+    input.seekg(0,input.beg);
+    std::cout << length << std::endl;
+    data.reserve(32);
+    input.read((char *)&data[0],length);
+    for(auto i = 0; i < rows; i++)
     {
-        //getline(file,temp,',');
-
-        std::istringstream reader(temp);
-        std::cout << "i is:"  << std::endl;
-        LOG(temp);
-        int tmp = i%3;
-        if(i%3 == 0)
-            reader >> val.ch0;
-        else if(i%3 == 1)
-            reader >> val.ch1;
-        else if(i%3 == 2)
-        {
-            reader >>val.ch2;
-            data.push_back(val);
-            LOG("Data is pushed");
-        }
-        i++;
-    }
+        std::cout << "row:" << i  << " " << data[i] << std::endl; 
+    }    
+    input.close();
 }
 
 int main()
 {
-    std::string dataFile = "../sample";
-    DataBuffer buff(dataFile);
-    buff.ReadData(dataFile);
-    
-    for(int i = 0;  i < buff.data.size(); i++)
-    {
-        std::cout << buff.data[i] << std::endl;
-    }
-    //for(chData d : buff.data)
-     //   std::cout << d << std::endl;
+
+    std::string dataFile = "../data";
+    dataBuffer buff(dataFile);
+    buff.readData(dataFile);
 }
