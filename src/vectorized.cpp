@@ -3,7 +3,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
-
+#include "spdlog/spdlog.h"
 #define CHANNELS 3 
 #define DEAFULT_NR_ROWS 1024
 #define LOG(x) std::cout << x << std::endl;
@@ -60,7 +60,8 @@ void dataBuffer::readData(std::string fName)
 int main()
 {
 
-    std::string dataFile = "../data";
+    /*std::string dataFile = "../data";
     dataBuffer buff(dataFile);
-    buff.readData(dataFile);
+    buff.readData(dataFile);*/
+	spdlog::info("Hellod,{}!","World");
 }
